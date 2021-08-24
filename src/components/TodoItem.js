@@ -1,37 +1,36 @@
-import React, { useState } from "react"
-import styles from "./TodoItem.module.css"
+import React, { useState } from 'react';
+import styles from './TodoItem.module.css';
 
 function TodoItem(props) {
-
   const [state, setState] = useState({
     editing: false,
   });
 
   const completedStyle = {
-    fontStyle: "italic",
-    color: "#595959",
+    fontStyle: 'italic',
+    color: '#595959',
     opacity: 0.4,
-    textDecoration: "line-through",
-  }
+    textDecoration: 'line-through',
+  };
 
   const handleEditing = () => {
     setState({ editing: true });
-  }
+  };
 
-  let viewMode = {}
-  let editMode = {}
+  const viewMode = {};
+  const editMode = {};
 
   if (state.editing) {
-    viewMode.display = "none"
+    viewMode.display = 'none';
   } else {
-    editMode.display = "none"
+    editMode.display = 'none';
   }
 
-  const handleUpdatedDone = event => {
-    if (event.key === "Enter") {
-      setState({ editing: false })
+  const handleUpdatedDone = (event) => {
+    if (event.key === 'Enter') {
+      setState({ editing: false });
     }
-  }
+  };
 
   return (
     <li className={styles.item}>
@@ -46,20 +45,21 @@ function TodoItem(props) {
           Delete
         </button>
         <span style={props.todo.completed ? completedStyle : null}>
-          {props.todo.title}</span>
+          {props.todo.title}
+        </span>
       </div>
       <input
-  type="text"
-  style={editMode}
-  className={styles.textInput}
-  value={props.todo.title}
-  onChange={e => {
-    props.setUpdate(e.target.value, props.todo.id)
-  }}
-  onKeyDown={handleUpdatedDone}
-/>
+        type="text"
+        style={editMode}
+        className={styles.textInput}
+        value={props.todo.title}
+        onChange={(e) => {
+          props.setUpdate(e.target.value, props.todo.id);
+        }}
+        onKeyDown={handleUpdatedDone}
+      />
 
     </li>
-  )
+  );
 }
-export default TodoItem
+export default TodoItem;
