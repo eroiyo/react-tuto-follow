@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import styles from './TodoItem.module.css';
 
 function TodoItem(props) {
@@ -31,6 +32,7 @@ function TodoItem(props) {
       setState({ editing: false });
     }
   };
+  const { handleChangeProps, deleteTodoProps, todo } = props;
 
   return (
     <li className={styles.item}>
@@ -39,22 +41,22 @@ function TodoItem(props) {
           type="checkbox"
           className={styles.checkbox}
           checked={props.todo.completed}
-          onChange={() => props.handleChangeProps(props.todo.id)}
+          onChange={() => handleChangeProps(props.todo.id)}
         />
-        <button onClick={() => props.deleteTodoProps(props.todo.id)}>
+        <button onClick={() => deleteTodoProps(props.todo.id)}>
           Delete
         </button>
-        <span style={props.todo.completed ? completedStyle : null}>
-          {props.todo.title}
+        <span style={todo.completed ? completedStyle : null}>
+          {todo.title}
         </span>
       </div>
       <input
         type="text"
         style={editMode}
         className={styles.textInput}
-        value={props.todo.title}
+        value={todo.title}
         onChange={(e) => {
-          props.setUpdate(e.target.value, props.todo.id);
+          props.setUpdate(e.target.value, todo.id);
         }}
         onKeyDown={handleUpdatedDone}
       />
@@ -62,4 +64,17 @@ function TodoItem(props) {
     </li>
   );
 }
+
+TodoItem.PropTypes = {
+  handleChangeProps: PropTypes.func,
+  deleteTodoProps: PropTypes.func,
+  setUpdate: PropTypes.func,
+};
+
+TodoItem.defaultProps = {
+  todos: {},
+  handleChangeProps: () => {},
+  deleteTodoProps: () => {},
+  setUpdate: () => {},
+};
 export default TodoItem;
