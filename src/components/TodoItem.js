@@ -40,10 +40,10 @@ function TodoItem(props) {
         <input
           type="checkbox"
           className={styles.checkbox}
-          checked={props.todo.completed}
+          checked={todo.completed}
           onChange={() => handleChangeProps(props.todo.id)}
         />
-        <button onClick={() => deleteTodoProps(props.todo.id)}>
+        <button type="button" onClick={() => deleteTodoProps(props.todo.id)}>
           Delete
         </button>
         <span style={todo.completed ? completedStyle : null}>
@@ -65,14 +65,20 @@ function TodoItem(props) {
   );
 }
 
-TodoItem.PropTypes = {
+TodoItem.propTypes = {
   handleChangeProps: PropTypes.func,
   deleteTodoProps: PropTypes.func,
   setUpdate: PropTypes.func,
+  todo: {
+    id: PropTypes.number,
+    setUpdate: PropTypes.func,
+    title: PropTypes.string,
+    completed: PropTypes.bool,
+  },
 };
 
 TodoItem.defaultProps = {
-  todos: {},
+  todo: {},
   handleChangeProps: () => {},
   deleteTodoProps: () => {},
   setUpdate: () => {},

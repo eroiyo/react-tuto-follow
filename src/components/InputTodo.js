@@ -1,14 +1,20 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 class InputTodo extends Component {
-  state = {
-    title: '',
+  constructor(props) {
+    super(props);
+    this.state = {
+      title: '',
+    };
   }
 
   handleSubmit = (e) => {
+    const { addTodoProps } = this.props;
+    const { title } = this.state;
     e.preventDefault();
-    if (this.state.title.trim()) {
-      this.props.addTodoProps(this.state.title);
+    if (title.trim()) {
+      addTodoProps(title);
       this.setState({
         title: '',
       });
@@ -28,20 +34,28 @@ class InputTodo extends Component {
   };
 
   render() {
+    const { title } = this.state;
     return (
       <form onSubmit={this.handleSubmit}>
         <input
           type="text"
           placeholder="Add todo..."
           className="input-text"
-          value={this.state.title}
+          value={title}
           name="title"
           onChange={this.onChange}
         />
-        <button className="input-submit">Submit</button>
+        <button type="submit" className="input-submit">Submit</button>
       </form>
     );
   }
 }
+
+InputTodo.propTypes = {
+  addTodoProps: PropTypes.func,
+};
+InputTodo.defaultProps = {
+  addTodoProps: {},
+};
 
 export default InputTodo;

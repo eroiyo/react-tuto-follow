@@ -25,6 +25,9 @@ TodosList.propTypes = {
   handleChangeProps: PropTypes.func,
   deleteTodoProps: PropTypes.func,
   setUpdate: PropTypes.func,
+  todos: {
+    map: PropTypes.func,
+  },
 };
 TodosList.defaultProps = {
   todos: {},
