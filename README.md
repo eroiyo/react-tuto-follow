@@ -1,10 +1,10 @@
-# React Boilerplate
+# React Todolist
 
-> An Template to use in future projects using React
+> A todolist using React
 
-![image](https://user-images.githubusercontent.com/59938389/129577987-74cc896a-c99e-4ede-b21d-baa589bb82f7.png)
+![image](https://user-images.githubusercontent.com/59938389/130679982-bf7112be-889d-4346-b6d5-f1b7ffe0c4b0.png)
 
-Additional description about the project and its features.
+This web app let you create, edit and delete task for you dialy needs!
 
 ## Built With
 
