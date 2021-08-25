@@ -18,8 +18,6 @@ class InputTodo extends Component {
       this.setState({
         title: '',
       });
-    } else {
-      alert('Please write item');
     }
   }
 
@@ -28,10 +26,6 @@ class InputTodo extends Component {
       [e.target.name]: e.target.value,
     });
   }
-
-  addTodoItem = (title) => {
-    console.log(title);
-  };
 
   render() {
     const { title } = this.state;
